@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="TypeRacer Pro - Improve your typing speed and accuracy with this beautiful typing game">
+    <title>TypeRacer Pro - Improve Your Typing Speed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="stars-background"></div>
+
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen active">
+        <div class="glass-panel title-panel">
+            <h1 class="game-title">
+                <span class="glow-text">TYPE</span>
+                <span class="glow-text accent">RACER</span>
+                <span class="glow-text">PRO</span>
+            </h1>
+            <p class="subtitle">Master your keyboard, track your progress</p>
+        </div>
+
+        <div class="glass-panel controls-panel">
+            <h2>Select Difficulty</h2>
+            <div class="difficulty-grid">
+                <button class="difficulty-button" data-level="easy">
+                    <div class="difficulty-icon">🌟</div>
+                    <h3>Easy</h3>
+                    <p>Simple words and short phrases</p>
+                    <span class="badge">Beginner</span>
+                </button>
+                <button class="difficulty-button" data-level="medium">
+                    <div class="difficulty-icon">🚀</div>
+                    <h3>Medium</h3>
+                    <p>Full sentences and paragraphs</p>
+                    <span class="badge">Intermediate</span>
+                </button>
+                <button class="difficulty-button" data-level="hard">
+                    <div class="difficulty-icon">⚡</div>
+                    <h3>Hard</h3>
+                    <p>Complex texts with punctuation</p>
+                    <span class="badge">Advanced</span>
+                </button>
+                <button class="difficulty-button" data-level="expert">
+                    <div class="difficulty-icon">🔥</div>
+                    <h3>Expert</h3>
+                    <p>Technical content and code</p>
+                    <span class="badge">Pro</span>
+                </button>
+            </div>
+
+            <div class="stats-preview">
+                <div class="stat-box">
+                    <span class="stat-label">Personal Best WPM</span>
+                    <span id="bestWPM" class="stat-value">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Best Accuracy</span>
+                    <span id="bestAccuracy" class="stat-value">0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <div class="game-container">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-icon">⚡</span>
+                    <div class="stat-content">
+                        <span class="stat-label">WPM</span>
+                        <span id="currentWPM" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-content">
+                        <span class="stat-label">Accuracy</span>
+                        <span id="currentAccuracy" class="stat-value">100%</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⏱️</span>
+                    <div class="stat-content">
+                        <span class="stat-label">Time</span>
+                        <span id="currentTime" class="stat-value">0s</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">❌</span>
+                    <div class="stat-content">
+                        <span class="stat-label">Errors</span>
+                        <span id="errorCount" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <span id="progressText" class="progress-text">0%</span>
+            </div>
+
+            <!-- Text Display -->
+            <div class="glass-panel text-panel">
+                <div id="textDisplay" class="text-display"></div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <input type="text" id="typingInput" class="typing-input" placeholder="Start typing here..."
+                    autocomplete="off" spellcheck="false" autofocus>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="restartButton" class="cosmic-button secondary">
+                    <span>↻ Restart</span>
+                </button>
+                <button id="quitButton" class="cosmic-button secondary">
+                    <span>← Back to Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen overlay">
+        <div class="glass-panel results-panel">
+            <h2 class="glow-text results-title">Test Complete!</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">⚡</div>
+                    <div class="result-content">
+                        <span class="result-label">Words Per Minute</span>
+                        <span id="finalWPM" class="result-value">0</span>
+                        <span id="wpmBadge" class="result-badge"></span>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">🎯</div>
+                    <div class="result-content">
+                        <span class="result-label">Accuracy</span>
+                        <span id="finalAccuracy" class="result-value">0%</span>
+                        <span id="accBadge" class="result-badge"></span>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">⏱️</div>
+                    <div class="result-content">
+                        <span class="result-label">Time Taken</span>
+                        <span id="finalTime" class="result-value">0s</span>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon">❌</div>
+                    <div class="result-content">
+                        <span class="result-label">Total Errors</span>
+                        <span id="finalErrors" class="result-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="newRecord" class="new-record" style="display: none;">
+                <span class="trophy-icon">🏆</span>
+                <span>New Personal Best!</span>
+            </div>
+
+            <div class="results-actions">
+                <button id="tryAgainButton" class="cosmic-button">
+                    <span>Try Again</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button id="backToMenuButton" class="cosmic-button secondary">
+                    <span>Back to Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+</body>
+
+</html>
