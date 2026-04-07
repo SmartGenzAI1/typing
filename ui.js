@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const expectedChar = gameState.currentText[typingInput.value.length - 1];
 
                 if (lastChar !== expectedChar) {
-                    typingInput.style.borderColor = '#ff3d3d';
-                    typingInput.style.boxShadow = '0 0 20px rgba(255, 61, 61, 0.5)';
+                    typingInput.style.borderColor = '#ba7070';
+                    typingInput.style.boxShadow = '0 0 20px rgba(180, 138, 138, 0.5)';
                     setTimeout(() => {
                         typingInput.style.borderColor = '';
                         typingInput.style.boxShadow = '';
